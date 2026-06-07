@@ -1,0 +1,815 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fef7ec;
+    font-family: 'Anek Bangla', 'Playfair Display', serif;
+    color: #2c2418;
+    line-height: 2.0;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. UNIFIED HAMBURGER NAVBAR (DESKTOP & MOBILE SIMILAR VIEW)
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(254, 247, 236, 0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid #e2cfbc;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #b47342;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Always display hamburger icon across all display monitors */
+.nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #b47342;
+    padding: 0.3rem 0.6rem;
+    z-index: 1002;
+    /* High layer hierarchy over layout dropdown container */
+    transition: transform 0.2s ease;
+}
+
+.nav-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* Screen overlay menu wrapper configured uniformly for both mobile and widescreen dimensions */
+.nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fef7ec;
+
+    /* Center container layouts */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Extreme tight spacing architectures optimized to easily hold all 13 item hooks */
+    gap: 0.25rem;
+    padding: 4rem 1.2rem 1.5rem 1.2rem;
+
+    overflow-y: auto;
+
+    /* Animation transitions */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+/* Interactive activation class handled seamlessly via DOM scripts */
+.nav-links.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Low vertical height spacing on active item buttons */
+.nav-link {
+    background: transparent;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #9b7a58;
+    cursor: pointer;
+
+    /* Minimize margins/paddings for maximum density support */
+    padding: 0.3rem 1.2rem;
+    width: auto;
+    max-width: 280px;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 40px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #b47342;
+    background: rgba(180, 115, 66, 0.08);
+}
+
+/* ==========================================================================
+   3. MAIN LAYOUT STRUCTURES
+   ========================================================================== */
+.container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 1.5rem 1.8rem 4rem;
+    background: #fef7ec;
+}
+
+/* Hero Section Styles */
+.hero {
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    animation: floatIn 0.8s ease-out;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #c47e44, #b45f2b, #d4955a);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s infinite linear;
+    margin-bottom: 0.5rem;
+}
+
+.sub-rant {
+    font-family: 'Anek Bangla', 'Inter', sans-serif;
+    font-size: 1.35rem;
+    color: #b07d53;
+    border-bottom: 1px solid #e8d5c0;
+    display: inline-block;
+    padding-bottom: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Philosophy Text Highlight */
+.philosophy-quote {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #b28b64;
+    word-spacing: 10px;
+    background: transparent;
+    padding: 0.9rem 0.5rem;
+    border-radius: 60px;
+}
+
+/* Section Title Flags */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 1rem 0 1.2rem 0;
+    background: linear-gradient(120deg, #b47240, #a05e2e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    border-left: 6px solid #e2b586;
+    padding-left: 1rem;
+    scroll-margin-top: 85px;
+    /* Adds space above section when scrolled to */
+}
+
+/* ==========================================================================
+   4. CONTENT BLOCKS & ART IMAGES
+   ========================================================================== */
+.text-block {
+    margin: 2rem 0;
+    background: transparent;
+}
+
+.text-block p {
+    font-family: 'Anek Bangla', 'Playfair Display', serif;
+    font-size: 1.2rem;
+    line-height: 2.0;
+    text-align: justify;
+    margin-bottom: 1.6rem;
+    color: #2c2418;
+    font-weight: 430;
+    word-spacing: 0.05em;
+    letter-spacing: 0.01em;
+}
+
+.art-image {
+    margin: 2.5rem 0;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    background: #fef7ec;
+}
+
+.art-image img,
+.art-image video {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.art-image:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 34px -14px rgba(80, 55, 30, 0.15);
+}
+
+.art-image:hover img,
+.art-image:hover video {
+    transform: scale(1.01);
+}
+
+video {
+    outline: none;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   5. DECORATIONS & UTILITIES
+   ========================================================================== */
+.quote-block {
+    padding: 0.8rem 0 0.8rem 1.5rem;
+    border-left: 4px solid #d9a56c;
+    margin: 1.5rem 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #674f34;
+    font-family: 'Anek Bangla', 'Inter', sans-serif;
+    word-spacing: 0.03em;
+}
+
+.book-highlight {
+    background: transparent;
+    padding: 0.8rem 0;
+    margin: 1rem 0;
+    border-top: 1px solid #eedbcb;
+    border-bottom: 1px solid #eedbcb;
+}
+
+.date-stamp {
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    color: #c49a6c;
+    text-align: right;
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.mini-tag {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #e2cfb8;
+    padding: 0.3rem 1.2rem;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    color: #b47b48;
+    font-family: 'Inter', sans-serif;
+}
+
+hr {
+    margin: 1.5rem 0;
+    border: none;
+    height: 1px;
+    background: #e2d0bc;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #c2a07e;
+    border-top: 1px solid #e2cfbc;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 1.2rem 2.5rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .sub-rant {
+        font-size: 1.15rem;
+    }
+
+    .text-block p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+    }
+
+    .section-title {
+        font-size: 1.9rem;
+        scroll-margin-top: 75px;
+    }
+
+    .philosophy-quote {
+        font-size: 0.65rem;
+        letter-spacing: 4px;
+        word-spacing: 6px;
+    }
+
+    .quote-block {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.8rem 1rem 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .sub-rant {
+        font-size: 1rem;
+    }
+
+    .text-block p {
+        font-size: 0.98rem;
+        line-height: 1.85;
+        word-spacing: 0.03em;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        padding-left: 0.8rem;
+    }
+
+    .philosophy-quote {
+        font-size: 0.55rem;
+        letter-spacing: 3px;
+        word-spacing: 4px;
+    }
+
+    .art-image {
+        margin: 1.8rem 0;
+        border-radius: 20px;
+    }
+
+    footer {
+        font-size: 0.7rem;
+        margin-top: 2rem;
+    }
+
+    /* Tighten drawer further for ultra small viewport metrics */
+    .nav-links {
+        gap: 0.15rem;
+        padding-top: 4.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.88rem;
+        padding: 0.25rem 1rem;
+    }
+}
+
+/* ==========================================================================
+   7. CORE KEYFRAMES, SCROLLBARS & LINKS
+   ========================================================================== */
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e7d9c7;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c4a076;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b48c5c;
+}
+
+::selection {
+    background: #e2cfb8;
+    color: #5a3e28;
+}
+
+a {
+    color: #b47342;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #8b5a34;
+    text-decoration: underline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.professional-footer {
+    background: linear-gradient(135deg, #fef5ea 0%, #fcf0e2 100%);
+    border-top: 1px solid #e2cfbc;
+    margin-top: 4rem;
+    padding: 3rem 1.5rem 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Footer Top - Quote */
+.footer-top {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e8d5c0;
+}
+
+.footer-quote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.quote-icon {
+    font-size: 1.2rem;
+    color: #c49a6c;
+}
+
+.footer-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    letter-spacing: 2px;
+    color: #9b7a58;
+    text-transform: uppercase;
+    word-spacing: 4px;
+}
+
+/* Footer Content - 3 Columns */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.footer-column {
+    text-align: left;
+}
+
+.footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #b47342;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 35px;
+    height: 2px;
+    background: #d9a56c;
+    border-radius: 2px;
+}
+
+.footer-about {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #7a5a3a;
+    margin-bottom: 0.8rem;
+}
+
+.footer-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #c49a6c;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.footer-nav-link {
+    background: transparent;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #9b7a58;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    padding: 0.2rem 0;
+}
+
+.footer-nav-link:hover {
+    color: #b47342;
+    transform: translateX(5px);
+}
+
+/* Social Links */
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #9b7a58;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.social-link:hover {
+    color: #b47342;
+    transform: translateX(5px);
+}
+
+.footer-credit {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #e8d5c0;
+}
+
+.footer-credit p {
+    font-size: 0.7rem;
+    color: #b49473;
+    margin-bottom: 0.2rem;
+}
+
+.creator-name {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+}
+
+.creator-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b47342;
+    margin-top: 0.3rem;
+    letter-spacing: 0.5px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #e8d5c0;
+}
+
+.footer-heart {
+    font-family: 'Anek Bangla', 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #b49473;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+}
+
+.footer-heart span {
+    color: #d9a56c;
+    font-size: 0.75rem;
+}
+
+.footer-signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    color: #c2a07e;
+    text-transform: uppercase;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-column {
+        text-align: center;
+    }
+
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-nav-link {
+        text-align: center;
+    }
+
+    .footer-nav-link:hover {
+        transform: translateX(0) scale(1.02);
+    }
+
+    .footer-social {
+        align-items: center;
+    }
+
+    .footer-quote p {
+        font-size: 0.9rem;
+        word-spacing: 2px;
+    }
+
+    .footer-heart {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .professional-footer {
+        padding: 2rem 1rem 1.5rem;
+    }
+
+    .footer-quote p {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .footer-about {
+        font-size: 0.8rem;
+    }
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    padding: 1rem 0 1.5rem 0;
+    margin: 1.5rem 0 0.5rem 0;
+    border-top: 1px solid #e8d5c0;
+    border-bottom: 1px solid #e8d5c0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #b49473;
+    letter-spacing: 0.3px;
+}
+
+.post-meta-category,
+.post-meta-actions,
+.post-meta-date,
+.post-meta-readtime {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.meta-icon {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.meta-label {
+    color: #b49473;
+    transition: color 0.2s ease;
+}
+
+.post-meta-category .meta-label {
+    background: #f5ede2;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+}
+
+.post-meta-actions .meta-label {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.post-meta-actions .meta-label:hover {
+    color: #b47342;
+    text-decoration: underline;
+}
+
+.meta-separator {
+    color: #d4bc9c;
+    font-size: 0.6rem;
+    margin: 0 0.1rem;
+}
+
+/* Responsive */
+@media (max-width: 550px) {
+    .post-meta {
+        gap: 0.8rem;
+        font-size: 0.6rem;
+    }
+
+    .post-meta-category .meta-label {
+        font-size: 0.55rem;
+    }
+
+    .meta-icon {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.8rem 0 1rem 0;
+    }
+}
